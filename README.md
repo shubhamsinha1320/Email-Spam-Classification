@@ -6,7 +6,7 @@ It is a email spam classification project where a number of mails were used for 
 The dataset used for this purpose was 'fraud_email_.csv' which is also present in the repository.
 
 There are some popular python libraries which were used during the development of program such as, pandas, tensorflow, nltk, sklearn and csv.
-The model I used for spam detection is Natural Language Processing's bag of words model.
+The model I used for spam detection is Natural Language Processing's bag of words model and the accuracy of the model is found 99.1 % (approximately).
 
 There are two developer-made functions in the program- message_preprocessing() and add_message_to_dataset().
 
