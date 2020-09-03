@@ -61,8 +61,17 @@ def message_preprocessing(message):
                 message_list[ind] = int(message_list[ind]) + 1
     return [message_list]
 
+def add_message_to_dataset(message, prediction):
+    with open('fraud_email_.csv', 'r', encoding="utf8") as readFile:
+        reader = csv.reader(readFile)
+        lines = list(reader)
+        lines.append([str(message), str(prediction)])
+    with open('fraud_email_.csv', 'w', encoding="utf8", newline='') as writeFile:
+        writer = csv.writer(writeFile)
+        for x in lines:
+            writer.writerow(x)
+
 message = input('Enter the message : ')
-#message = 'Rajput made his film debut in the buddy drama Kai Po Che! (2013), for which he received a nomination for the Filmfare Award for Best Male Debut. He then starred in the romantic comedy Shuddh Desi Romance (2013) and as the titular detective in the action thriller Detective Byomkesh Bakshy! (2015). His highest-grossing releases came with a supporting role in the satire PK (2014), followed by the titular role in the sports biopic M.S. Dhoni: The Untold Story (2016). For his performance in the latter, he received his first nomination for the Filmfare Award for Best Actor.[7][8] Rajput went on to star in the commercially successful films Kedarnath (2018) and Chhichhore (2019).[9][10] His last film, Dil Bechara (2020), was released posthumously on Hotstar.'
 mwords_list = message_preprocessing(str(message))
 message_predict = ann.predict(mwords_list)
 message_predict = 1 if message_predict > 0.5 else 0
@@ -71,15 +80,3 @@ if(message_predict == 1):
     print('\n\n\nSpam')
 else:
     print('\n\n\nGood to read')
-
-#def add_message_to_dataset(message, prediction):
-#    with open('fraud_email_.csv', 'r', encoding="utf8") as readFile:
-#        reader = csv.reader(readFile)
-#        lines = list(reader)
-#        lines.append([str(message), str(prediction)])
-#    with open('fraud_email_.csv', 'w', encoding="utf8", newline='') as writeFile:
-#        writer = csv.writer(writeFile)
-#        for x in lines:
-#            writer.writerow(x)
-#
-#add_message_to_dataset(message, message_predict)
